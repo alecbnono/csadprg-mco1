@@ -23,4 +23,5 @@ function withdraw(account, amount) {
 }
 function setName(account, name) {
     account.name = name;
+    account.balance = 0;
 }

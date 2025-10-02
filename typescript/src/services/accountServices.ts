@@ -20,4 +20,5 @@ export function withdraw(account: Account, amount: number): boolean {
 
 export function setName(account: Account, name: string): void {
   account.name = name;
+  account.balance = 0;
 }

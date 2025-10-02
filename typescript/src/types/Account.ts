@@ -1,4 +1,4 @@
 export interface Account {
-  name: string;
+  name: string | null;
   balance: number;
 }

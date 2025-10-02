@@ -1,17 +1,17 @@
-import { Account } from "../types/Account.ts";
-import { setName } from "../services/accountServices.ts";
-import { input } from "../utils/input.ts";
-import { askYesNo } from "../utils/prompts.ts";
+import { Account } from "../types/Account";
+import { setName } from "../services/accountServices";
+import { input } from "../utils/input";
+import { askYesNo } from "../utils/prompts";
 
-async function navigateRegister(account: Account) {
+export async function navigateRegister(account: Account) {
   let prompt: string;
   let name: string;
   do {
-    console.log("Register Account Name");
+    console.log("\nRegister Account Name");
 
-    name = input("Account Name: ");
+    name = await input("Account Name: ");
 
-    prompt = askYesNo();
+    prompt = await askYesNo();
   } while (prompt !== "Y" && prompt !== "y");
 
   setName(account, name);
