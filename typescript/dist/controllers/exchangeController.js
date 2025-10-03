@@ -15,11 +15,12 @@ async function navigateExchange(rates) {
         (0, exchangeService_1.listCurrencies)();
         inputIndex = await (0, prompts_1.menuPrompt)("Source Currency: ", 1, 6);
         inputAmount = await (0, prompts_1.moneyPrompt)("Source Amount: ");
-        console.log("Source Currency Option:");
+        console.log("\nSource Currency Option:");
         (0, exchangeService_1.listCurrencies)();
         outputIndex = await (0, prompts_1.menuPrompt)("Exchange Currency: ", 1, 6);
-        outputAmount = (0, exchangeService_1.convert)(rates, (0, exchangeService_1.indexToKey)(inputIndex), (0, exchangeService_1.indexToKey)(outputIndex), inputAmount);
+        outputAmount =
+            Math.round((0, exchangeService_1.convert)(rates, (0, exchangeService_1.indexToKey)(inputIndex), (0, exchangeService_1.indexToKey)(outputIndex), inputAmount) * 100) / 100;
         console.log(`Exchange Amount: ${outputAmount}`);
-        prompt = await (0, prompts_1.askYesNo)("Convert another Currency");
+        prompt = await (0, prompts_1.askYesNo)("Convert another currency");
     } while (prompt !== "Y" && prompt !== "y");
 }

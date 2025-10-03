@@ -43,7 +43,7 @@ export function convert(
 ): number {
   // input currency -> PHP -> output currency
   const convertToPHP: number = 1 / rates["PHP"][base];
-  const convertFromPHP: number = rates["PHP"][target];
+  const convertFromPHP: number = convertToPHP * rates["PHP"][target];
 
   return amount * convertFromPHP;
 }

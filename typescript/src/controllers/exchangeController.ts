@@ -22,20 +22,23 @@ export async function navigateExchange(rates: ExchangeRate): Promise<void> {
 
     inputAmount = await moneyPrompt("Source Amount: ");
 
-    console.log("Source Currency Option:");
+    console.log("\nExchange Currency Option:");
     listCurrencies();
 
     outputIndex = await menuPrompt("Exchange Currency: ", 1, 6);
 
-    outputAmount = convert(
-      rates,
-      indexToKey(inputIndex),
-      indexToKey(outputIndex),
-      inputAmount,
-    );
+    outputAmount =
+      Math.round(
+        convert(
+          rates,
+          indexToKey(inputIndex),
+          indexToKey(outputIndex),
+          inputAmount,
+        ) * 100,
+      ) / 100;
 
     console.log(`Exchange Amount: ${outputAmount}`);
 
-    prompt = await askYesNo("Convert another Currency");
+    prompt = await askYesNo("Convert another currency");
   } while (prompt !== "Y" && prompt !== "y");
 }

@@ -38,6 +38,6 @@ function indexToKey(index) {
 function convert(rates, base, target, amount) {
     // input currency -> PHP -> output currency
     const convertToPHP = 1 / rates["PHP"][base];
-    const convertFromPHP = rates["PHP"][target];
+    const convertFromPHP = convertToPHP * rates["PHP"][target];
     return amount * convertFromPHP;
 }
