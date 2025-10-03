@@ -6,10 +6,10 @@ exports.askYesNo = askYesNo;
 const input_1 = require("./input");
 // input validation for the menu navigation
 // start & end params represent inclusive ranges
-async function menuPrompt(start, end) {
+async function menuPrompt(promptText, start, end) {
     let prompt;
     do {
-        const raw = await (0, input_1.input)("Input Selection: "); // raw string
+        const raw = await (0, input_1.input)(promptText); // raw string
         prompt = Number(raw); // convert to number
         if (Number.isNaN(prompt) || prompt < start || prompt > end) {
             console.log("Invalid Input!\n");
@@ -28,11 +28,11 @@ async function moneyPrompt(promptText) {
     } while (Number.isNaN(prompt) || prompt <= 0);
     return prompt;
 }
-async function askYesNo() {
+async function askYesNo(promptText) {
     const validInputs = ["Y", "y", "N", "n"];
     let prompt;
     do {
-        prompt = await (0, input_1.input)("\nBack to Main Menu? [Y/N]: ");
+        prompt = await (0, input_1.input)(`\n${promptText} [Y/N]: `);
         if (!validInputs.includes(prompt)) {
             console.log("Invalid Input!\n");
         }

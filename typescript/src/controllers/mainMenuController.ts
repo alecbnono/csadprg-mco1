@@ -2,10 +2,15 @@ import { menuPrompt } from "../utils/prompts";
 import { navigateRegister } from "./registerController";
 import { navigateDeposit } from "./depositController";
 import { navigateWithdraw } from "./withdrawController";
+import { navigateExchange } from "./exchangeController";
+import { navigateRecord } from "./recordController";
 import { Account } from "../types/Account";
 import { ExchangeRate } from "../types/ExchangeRate";
 
-export async function navigateMainMenu(account: Account, rates: ExchangeRate) {
+export async function navigateMainMenu(
+  account: Account,
+  rates: ExchangeRate,
+): Promise<void> {
   let input: number;
 
   do {
@@ -19,7 +24,7 @@ export async function navigateMainMenu(account: Account, rates: ExchangeRate) {
     console.log("[6] Show Interest Computation");
     console.log("[0] Exit");
 
-    input = await menuPrompt(0, 6);
+    input = await menuPrompt("Input Selection: ", 0, 6);
 
     switch (input) {
       case 1:
@@ -32,8 +37,10 @@ export async function navigateMainMenu(account: Account, rates: ExchangeRate) {
         await navigateWithdraw(account);
         break;
       case 4:
+        await navigateExchange(rates);
         break;
       case 5:
+        await navigateRecord(rates);
         break;
       case 6:
         break;

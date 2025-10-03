@@ -10,7 +10,7 @@ async function navigateRegister(account) {
     do {
         console.log("\nRegister Account Name");
         name = await (0, input_1.input)("Account Name: ");
-        prompt = await (0, prompts_1.askYesNo)();
+        prompt = await (0, prompts_1.askYesNo)("Back to the Main Menu");
     } while (prompt !== "Y" && prompt !== "y");
     (0, accountServices_1.setName)(account, name);
 }

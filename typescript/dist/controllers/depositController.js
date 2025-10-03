@@ -23,7 +23,7 @@ async function navigateDeposit(account) {
                 }
             } while (valid === false);
             console.log(`Updated Balance: ${account.balance}`);
-            prompt = await (0, prompts_1.askYesNo)();
+            prompt = await (0, prompts_1.askYesNo)("Back to the Main Menu");
         } while (prompt !== "Y" && prompt !== "y");
     }
     else {

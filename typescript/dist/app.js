@@ -9,6 +9,7 @@ async function main() {
         balance: 0,
     };
     let rates = await (0, exchangeService_1.compileRates)();
+    // console.log(rates);
     (0, mainMenuController_1.navigateMainMenu)(user, rates);
 }
 main();

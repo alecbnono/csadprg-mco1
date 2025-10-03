@@ -13,6 +13,8 @@ async function main(): Promise<void> {
 
   let rates: ExchangeRate = await compileRates();
 
+  // console.log(rates);
+
   navigateMainMenu(user, rates);
 }
 

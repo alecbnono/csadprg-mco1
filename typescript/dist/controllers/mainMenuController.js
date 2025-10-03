@@ -5,6 +5,8 @@ const prompts_1 = require("../utils/prompts");
 const registerController_1 = require("./registerController");
 const depositController_1 = require("./depositController");
 const withdrawController_1 = require("./withdrawController");
+const exchangeController_1 = require("./exchangeController");
+const recordController_1 = require("./recordController");
 async function navigateMainMenu(account, rates) {
     let input;
     do {
@@ -17,7 +19,7 @@ async function navigateMainMenu(account, rates) {
         console.log("[5] Record Exchange Rates");
         console.log("[6] Show Interest Computation");
         console.log("[0] Exit");
-        input = await (0, prompts_1.menuPrompt)(0, 6);
+        input = await (0, prompts_1.menuPrompt)("Input Selection: ", 0, 6);
         switch (input) {
             case 1:
                 await (0, registerController_1.navigateRegister)(account);
@@ -29,8 +31,10 @@ async function navigateMainMenu(account, rates) {
                 await (0, withdrawController_1.navigateWithdraw)(account);
                 break;
             case 4:
+                await (0, exchangeController_1.navigateExchange)(rates);
                 break;
             case 5:
+                await (0, recordController_1.navigateRecord)(rates);
                 break;
             case 6:
                 break;

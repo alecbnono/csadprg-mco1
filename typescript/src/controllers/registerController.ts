@@ -3,7 +3,7 @@ import { setName } from "../services/accountServices";
 import { input } from "../utils/input";
 import { askYesNo } from "../utils/prompts";
 
-export async function navigateRegister(account: Account) {
+export async function navigateRegister(account: Account): Promise<void> {
   let prompt: string;
   let name: string;
   do {
@@ -11,7 +11,7 @@ export async function navigateRegister(account: Account) {
 
     name = await input("Account Name: ");
 
-    prompt = await askYesNo();
+    prompt = await askYesNo("Back to the Main Menu");
   } while (prompt !== "Y" && prompt !== "y");
 
   setName(account, name);

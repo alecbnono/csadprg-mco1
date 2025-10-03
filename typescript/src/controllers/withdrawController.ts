@@ -2,7 +2,7 @@ import { Account } from "../types/Account";
 import { withdraw } from "../services/accountServices";
 import { askYesNo, moneyPrompt } from "../utils/prompts";
 
-export async function navigateWithdraw(account: Account) {
+export async function navigateWithdraw(account: Account): Promise<void> {
   if (account.name !== null) {
     let prompt: string;
     do {
@@ -28,7 +28,7 @@ export async function navigateWithdraw(account: Account) {
 
       console.log(`Updated Balance: ${account.balance}`);
 
-      prompt = await askYesNo();
+      prompt = await askYesNo("Back to the Main Menu");
     } while (prompt !== "Y" && prompt !== "y");
   } else {
     console.log("Please Register First!\n");
