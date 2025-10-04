@@ -7,6 +7,7 @@ const depositController_1 = require("./depositController");
 const withdrawController_1 = require("./withdrawController");
 const exchangeController_1 = require("./exchangeController");
 const recordController_1 = require("./recordController");
+const interestController_1 = require("./interestController");
 async function navigateMainMenu(account, rates) {
     let input;
     do {
@@ -37,6 +38,7 @@ async function navigateMainMenu(account, rates) {
                 await (0, recordController_1.navigateRecord)(rates);
                 break;
             case 6:
+                await (0, interestController_1.navigateInterest)(account);
                 break;
             case 0:
                 console.log("Goodbye!");

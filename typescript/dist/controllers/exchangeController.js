@@ -15,7 +15,7 @@ async function navigateExchange(rates) {
         (0, exchangeService_1.listCurrencies)();
         inputIndex = await (0, prompts_1.menuPrompt)("Source Currency: ", 1, 6);
         inputAmount = await (0, prompts_1.moneyPrompt)("Source Amount: ");
-        console.log("\nSource Currency Option:");
+        console.log("\nExchange Currency Option:");
         (0, exchangeService_1.listCurrencies)();
         outputIndex = await (0, prompts_1.menuPrompt)("Exchange Currency: ", 1, 6);
         outputAmount =

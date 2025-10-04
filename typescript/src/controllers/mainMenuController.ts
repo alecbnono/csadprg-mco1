@@ -4,6 +4,7 @@ import { navigateDeposit } from "./depositController";
 import { navigateWithdraw } from "./withdrawController";
 import { navigateExchange } from "./exchangeController";
 import { navigateRecord } from "./recordController";
+import { navigateInterest } from "./interestController";
 import { Account } from "../types/Account";
 import { ExchangeRate } from "../types/ExchangeRate";
 
@@ -43,6 +44,7 @@ export async function navigateMainMenu(
         await navigateRecord(rates);
         break;
       case 6:
+        await navigateInterest(account);
         break;
       case 0:
         console.log("Goodbye!");

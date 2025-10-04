@@ -22,3 +22,7 @@ export function setName(account: Account, name: string): void {
   account.name = name;
   account.balance = 0;
 }
+
+export function computeInterest(principal: number): number {
+  return Math.round(principal * (0.05 / 365) * 100) / 100;
+}
