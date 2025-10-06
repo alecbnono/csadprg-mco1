@@ -1,10 +1,26 @@
 package com.bankingapp
 
+/**
+ * This class serves as the main controller of the program.
+ *
+ * Core Responsibilities:
+ *  - Display menus
+ *  - Receive user input
+ *  - Initializing the bank account
+ *
+ *  @author Joshua Calibo
+ *  @since September 24, 2025
+ *
+ */
+
 class Controller(private var forex : MoneyChanger) {
     private var user: BankAccount? = null
     private val currencySelection = mapOf(1 to "PHP", 2 to "USD", 3 to "JPY",
         4 to "GBP", 5 to "EUR", 6 to "CNY")
 
+    /**
+     * Prints the main menu and calls other menus the user wishes to access.
+     */
     fun mainMenu() {
         var input: Int
 
@@ -36,6 +52,9 @@ class Controller(private var forex : MoneyChanger) {
         } while (input != 7)
     }
 
+    /**
+     * Prints the account registration menu and initializes the bank account.
+     */
     fun registerAccount() {
         println("\nRegister Account Name")
         print("Account Name: ")
@@ -49,6 +68,9 @@ class Controller(private var forex : MoneyChanger) {
         } while (input != "Y" && input != "y")
     }
 
+    /**
+     * Prints the deposit menu and calls the bank account to perform the deposit.
+     */
     fun deposit() {
         if (user == null) {
             userNull()
@@ -83,6 +105,9 @@ class Controller(private var forex : MoneyChanger) {
         } while (input != "Y" && input != "y")
     }
 
+    /**
+     * Prints the withdrawal menu and calls the bank account to perform the withdrawal.
+     */
     fun withdraw() {
         if (user == null) {
             userNull()
@@ -117,6 +142,10 @@ class Controller(private var forex : MoneyChanger) {
         } while (input != "Y" && input != "y")
     }
 
+    /**
+     * Prints the currency exchange menu. Allows the user to get the value of
+     * one currency to another.
+     */
     fun currencyExchange() {
         if (user == null) {
             userNull()
@@ -194,6 +223,9 @@ class Controller(private var forex : MoneyChanger) {
         } while (strInput == "Y" || strInput == "y")
     }
 
+    /**
+     * Allows the user to change the exchange rate for a specific currency.
+     */
     fun recordExchangeRates() {
         if (user == null) {
             userNull()
@@ -236,6 +268,9 @@ class Controller(private var forex : MoneyChanger) {
         } while (strInput != "N" && strInput != "n")
     }
 
+    /**
+     * Prints the daily interest computation for a given period of time.
+     */
     fun showInterestComputation() {
         if (user == null) {
             userNull()
@@ -278,6 +313,9 @@ class Controller(private var forex : MoneyChanger) {
         } while (strInput != "Y" && strInput != "y")
     }
 
+    /**
+     * Prints the currency selection.
+     */
     final fun printCurrencySelection() {
         println("[1] Philippine Peso (PHP)")
         println("[2] United State Dollar (USD)")
@@ -287,6 +325,10 @@ class Controller(private var forex : MoneyChanger) {
         println("[6] Chinese Yuan Renminni (CNY)\n")
     }
 
+    /**
+     * Responsible for printing the "Back to the Main Menu" loop when an
+     * action that requires an account is done without an account.
+     */
     final fun userNull() {
         println("Please register an account first.\n")
 
