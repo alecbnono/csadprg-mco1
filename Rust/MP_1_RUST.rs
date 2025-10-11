@@ -1,3 +1,9 @@
+//********************
+// Last names: Calibo, Nono, Panlilio, So
+// Language: R
+// Paradigm(s): Functional
+// ********************
+
 use std::io::{self, Write};
 
 fn main() {
@@ -165,6 +171,8 @@ fn main() {
     }
 }
 
+/*Function that displays the main menu options and gets the choice of the user.
+   @return the choice of the user*/
 fn main_menu() -> i32 {
     println!("Welcome to Banko Lasalyano");
     println!("Select Transaction:");
@@ -198,6 +206,9 @@ fn main_menu() -> i32 {
     }
 }
 
+
+ /*Function that asks the user if he/she would like to go back to the main menu.
+    @return the choice of the user*/
 fn back_to_main() -> char {
     print!("Back to the Main Menu (Y/N): ");
     io::stdout().flush().unwrap();
@@ -209,6 +220,9 @@ fn back_to_main() -> char {
     choice
 }
 
+
+/*Function that asks the user for the account name
+    @return the account name */
 fn register_account() -> String {
     println!("Register Account Name");
     print!("Account Name: ");
@@ -222,6 +236,11 @@ fn register_account() -> String {
 
 }
 
+ /*Function that allows the user to deposit money into their account.
+    @param account_name - the account name.
+    @param current_balance - the balance of the user.
+    @param currency - the currency of the account
+    @return updated balance after deposit*/
 fn deposit_amount(account_name: &String, current_balance: f64, currency: &String) -> f64 {
     let updated_balance: f64;
     println!("Deposit Amount");
@@ -254,6 +273,11 @@ fn deposit_amount(account_name: &String, current_balance: f64, currency: &String
     }
 }
 
+ /*Function that allows the user to withdraw money from their account.
+    @param account_name - the account name.
+    @param current_balance - the balance of the user.
+    @param currency - the currency of the account
+    @return updated balance after withdraw*/
 fn withdraw_amount(account_name: &String, current_balance: f64, currency: &String) -> f64 {
     let updated_balance: f64;
     println!("Withdraw Amount");
@@ -285,7 +309,8 @@ fn withdraw_amount(account_name: &String, current_balance: f64, currency: &Strin
     }
 }
 
-
+ /*Function that asks which currency would the user want to set the rate of.
+    @return the choice of the user*/
 fn get_currency() -> i32 {
     println!("Record Exchange Rate");
     println!("");
@@ -317,6 +342,8 @@ fn get_currency() -> i32 {
     }
 }
 
+ /*Function that asks for the rate the user wants to set.
+    @return the rate*/
 fn get_rate() -> f64 {
     loop {
         println!("");
@@ -339,6 +366,8 @@ fn get_rate() -> f64 {
     }
 }
 
+ /*Function that asks the user for the source currency.
+    @return the choice of the user*/
 fn get_source_currency() -> i32 {
     println!("Foreign Currency Exchange");
     println!("Source Currency Option:");
@@ -370,7 +399,8 @@ fn get_source_currency() -> i32 {
     }
 }
 
-
+ /*Function that asks the user for the source amount.
+    @return the amount*/
 fn get_source_amount() -> f64 {
     loop {
         println!("");
@@ -393,7 +423,8 @@ fn get_source_amount() -> f64 {
     }
 }
 
-
+ /*Function that asks the user for the currency he/she wants to exchange it to.
+    @return the choice of the user*/
 fn get_exchange_currency() -> i32 {
     println!("");
     println!("Exchanged Currency Options:");
@@ -425,10 +456,18 @@ fn get_exchange_currency() -> i32 {
     }
 }
 
+ /*Function that converts a certain amount into php based on the exchange rate.
+    @param source_amount - the amount that will be exchanged
+    @param exchange_rate - the exchange rate
+    @return the exchanged amount in php*/
 fn compute_to_php(source_amount: f64, exchange_rate: f64) -> f64 {
     source_amount * exchange_rate
 }
 
+ /*Function that converts a certain amount in php into another currency.
+    @param amount - the amount that will be exchanged
+    @param exchange_rate - the exchange rate
+    @return the exchanged amount in the desired currency*/
 fn compute_to_another_currency(amount: f64, exchange_rate: f64) -> f64 {
     let mut computed_amount = amount/exchange_rate;
     //Round to two decimal places
@@ -437,6 +476,8 @@ fn compute_to_another_currency(amount: f64, exchange_rate: f64) -> f64 {
     computed_amount
 }
 
+ /*Function that asks the user if he/she would like to go back to convert another currency
+    @return the choice of the user*/
 fn convert_another_currency() -> char {
     print!("Convert another currency (Y/N)?: ");
     io::stdout().flush().unwrap();
@@ -448,6 +489,12 @@ fn convert_another_currency() -> char {
     choice
 }
 
+
+ /*Function that shows the user the day by day projected increase based on their current balance and the number of days they desire.
+    @param balance - the user's current balance
+    @param name - the account name of the user
+    @param currency - the currency of the account
+    @return the exchanged amount in the desired currency*/
 fn show_interest(balance: f64, name: &String, currency: &String) {
     println!("Show Interest Amount");
     println!("Account Name: {}", name);
