@@ -1,15 +1,13 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const exchangeService_1 = require("./services/exchangeService");
-const mainMenuController_1 = require("./controllers/mainMenuController");
+import { compileRates } from "./services/exchangeService.js";
+import { navigateMainMenu } from "./controllers/mainMenuController.js";
 async function main() {
-    console.log("Running program...\n");
-    let user = {
-        name: null,
-        balance: 0,
-    };
-    let rates = await (0, exchangeService_1.compileRates)();
-    // console.log(rates);
-    (0, mainMenuController_1.navigateMainMenu)(user, rates);
+  console.log("Running program...\n");
+  let user = {
+    name: null,
+    balance: 0,
+  };
+  let rates = await compileRates();
+  // console.log(rates);
+  navigateMainMenu(user, rates);
 }
 main();

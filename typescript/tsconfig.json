@@ -1,8 +1,7 @@
 {
     "compilerOptions": {
         "target": "ES2022", // enables top-level await, async/await
-        "module": "NodeNext", // use native ES modules (import/export)
-        "moduleResolution": "NodeNext",
+        "module": "ESNext", // use native ES modules (import/export)
         "esModuleInterop": true, // allows default imports for CommonJS
         "forceConsistentCasingInFileNames": true,
         "strict": true, // strict type-checking
