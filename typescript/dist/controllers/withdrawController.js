@@ -1,5 +1,25 @@
+"use strict";
+
 import { withdraw } from "../services/accountServices.js";
 import { askYesNo, moneyPrompt } from "../utils/prompts.js";
+
+/**
+ * Handles the withdrawal process for an account.
+ *
+ * If the account is registered, the user is prompted to enter a withdrawal amount.
+ * The function ensures that the entered amount is valid and that the account
+ * has sufficient balance. The user can repeatedly withdraw until they choose
+ * to return to the main menu.
+ *
+ * @async
+ * @function navigateWithdraw
+ * @param {Object} account - The account object containing the user's name and balance.
+ * @param {string} account.name - The name associated with the account.
+ * @param {number} account.balance - The current balance of the account.
+ * @returns {Promise<void>} Resolves once the withdrawal process completes or
+ * the user decides to return to the main menu.
+ */
+
 export async function navigateWithdraw(account) {
   if (account.name !== null) {
     let prompt;

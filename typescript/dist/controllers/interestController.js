@@ -1,5 +1,40 @@
+/**
+ * Handles the user interaction flow for viewing accrued interest over time.
+ *
+ * This function displays an interest table for a given account balance
+ * based on a fixed 5% interest rate. It prompts the user for the total number
+ * of days to compute interest for and displays a per-day breakdown including:
+ * the day count, interest earned, and updated balance.
+ * The process repeats until the user opts to return to the main menu.
+ *
+ * @async
+ * @function navigateInterest
+ * @param {Object} account - The account object associated with the user.
+ * @param {string|null} account.name - The name of the account holder. If `null`, the user is asked to register first.
+ * @param {number} account.balance - The current balance of the account, used as the principal for interest computation.
+ * @returns {Promise<void>} A promise that resolves when the user exits the interest view menu.
+ *
+ * @example
+ * // Example usage:
+ * const account = { name: "Alec", balance: 10000 };
+ * await navigateInterest(account);
+ * // Console output:
+ * // Show Interest Amount
+ * // Account Name: Alec
+ * // Current Balance: 10000
+ * // Currency: PHP
+ * // Interest Rate: 5%
+ * // Total Number of Days: 3
+ * // Day | Interest | Balance
+ * // 1   | 500.00   | 10500.00
+ * // 2   | 525.00   | 11025.00
+ * // 3   | 551.25   | 11576.25
+ */
+"use strict";
+
 import { computeInterest } from "../services/accountServices.js";
 import { askYesNo, moneyPrompt } from "../utils/prompts.js";
+
 export async function navigateInterest(account) {
   if (account.name !== null) {
     let prompt;
