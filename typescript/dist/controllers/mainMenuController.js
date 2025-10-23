@@ -62,6 +62,7 @@ import { navigateInterest } from "./interestController.js";
 export async function navigateMainMenu(account, rates) {
   let input;
   do {
+    console.clear();
     console.log("Welcome to Banko Lasalyano\n");
     console.log("Select Transaction:");
     console.log("[1] Register Account Name");
@@ -74,21 +75,27 @@ export async function navigateMainMenu(account, rates) {
     input = await menuPrompt("Input Selection: ", 0, 6);
     switch (input) {
       case 1:
+        console.clear();
         await navigateRegister(account);
         break;
       case 2:
+        console.clear();
         await navigateDeposit(account);
         break;
       case 3:
+        console.clear();
         await navigateWithdraw(account);
         break;
       case 4:
+        console.clear();
         await navigateExchange(rates);
         break;
       case 5:
+        console.clear();
         await navigateRecord(rates);
         break;
       case 6:
+        console.clear();
         await navigateInterest(account);
         break;
       case 0:

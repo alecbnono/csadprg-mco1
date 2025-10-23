@@ -43,7 +43,7 @@ async function main() {
   let rates = await compileRates();
 
   // Uncomment this line to inspect the fetched exchange rate data (for debugging).
-  console.log(rates);
+  // console.log(rates);
 
   // Launch the main menu navigation system.
   // This function controls user interaction and feature access.

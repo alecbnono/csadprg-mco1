@@ -87,7 +87,7 @@ depositAmount <- function(name, balance, currency) {
                 cat(sprintf("Updated Balance: %.2f\n", balance))
                 break  
             } else {
-                cat("Invalid input. Please enter a positive integer amount.\n")
+                cat("Invalid input. Please enter a positive real value.\n")
             }
         }
 
@@ -139,15 +139,20 @@ withdrawAmount <- function(name, balance, currency) {
             }
         }
 
-        repeat {
-            choice <- tolower(trimws(readline(prompt = "\nBack to the Main Menu (Y/N): "))) #prompt user to return to main menu
-            if (choice == "y") {
-                return(balance) 
-            } else if (choice == "n") {
-                printBorders() # prints borders and breaks to outer loop to re-enter withdraw amount
-                break  
-            } else {
-                cat("Please input Y or N only.\n")
+        if (balance == 0){
+            return(balance)
+        }
+        else{
+            repeat {
+                choice <- tolower(trimws(readline(prompt = "\nBack to the Main Menu (Y/N): "))) #prompt user to return to main menu
+                if (choice == "y") {
+                    return(balance) 
+                } else if (choice == "n") {
+                    printBorders() # prints borders and breaks to outer loop to re-enter withdraw amount
+                    break  
+                } else {
+                    cat("Please input Y or N only.\n")
+                }
             }
         }
     }
@@ -306,7 +311,7 @@ showInterestComputation <- function(name, balance, currency) {
 # Main function to run the banking application.
 
 main <- function() {
-    name <- "N/A"
+    name <- NULL
     balance <- 1000.0 
     currency <- "PHP"
     PHP_rate <- list("Philippine Peso", "PHP", 1)
@@ -316,7 +321,7 @@ main <- function() {
     EUR_rate <- list("Euro", "EUR", 1)
     CNY_rate <- list("Chinese Yuan Renminni", "CNY", 1) 
 
-    exchange_Rates <- list(PHP_rate, USD_rate, JPY_rate, GBP_rate, EUR_rate, CNY_rate) #stores the currency rates in a list of lists
+    exchange_Rates <- list(PHP_rate, USD_rate, JPY_rate, GBP_rate, EUR_rate, CNY_rate)
     repeat {
         printBorders()
         printMainMenu()
@@ -324,38 +329,49 @@ main <- function() {
         input <- readline(prompt = "Select an option: ")  
         num <- suppressWarnings(as.numeric(input))        
         option <- as.integer(num)       
-        if (!is.na(option) && num == as.integer(num)) { #check if input is a valid integer
+        if (!is.na(option) && num == as.integer(num)) {
             if (option == 1) {
                 printBorders()
                 name <- registerName()
-            } else if (option == 2) {
-                printBorders()
-                balance <- depositAmount(name, balance, currency)
-            } else if (option == 3) {
-                printBorders()
-                balance <- withdrawAmount(name, balance, currency)
-            } else if (option == 4) {
-                printBorders()
-                currencyExchange(exchange_Rates)
-            } else if (option == 5) {
-                printBorders()
-                exchange_Rates <- recordExchangeRates(exchange_Rates)
-                cat(exchange_Rates[[2]][[3]])
-            } else if (option == 6) {
-                printBorders()
-                showInterestComputation(name, balance, currency)
-            } else if (option == 7) {
+            } else if (option >= 2 && option <= 6) {
+                if (is.null(name)) {
+                    cat("Please register an account first.\n")
+                } else if (option == 2) {
+                    printBorders()
+                    balance <- depositAmount(name, balance, currency)
+                } else if (option == 3) {
+                    if (balance == 0){
+                        printBorders()
+                        cat("No balance to withdraw")
+                    }
+                    else{
+                        printBorders()
+                        balance <- withdrawAmount(name, balance, currency)
+                    }
+                } else if (option == 4) {
+                    printBorders()
+                    currencyExchange(exchange_Rates)
+                } else if (option == 5) {
+                    printBorders()
+                    exchange_Rates <- recordExchangeRates(exchange_Rates)
+                    cat(exchange_Rates[[2]][[3]])
+                } else if (option == 6) {
+                    printBorders()
+                    showInterestComputation(name, balance, currency)
+                }
+            } 
+            else if (option == 7) {
                 printBorders()
                 cat("Exiting program. Goodbye!\n")
                 printBorders()
                 break
-            } else {
+            }
+            else {
                 cat("Invalid option. Please try again.\n")
             }
         } else {
             cat("Invalid input. Please enter an integer value.\n")
         }
-        
     }
 }
 
