@@ -312,7 +312,7 @@ showInterestComputation <- function(name, balance, currency) {
 
 main <- function() {
     name <- NULL
-    balance <- 1000.0 
+    balance <- 0.0 
     currency <- "PHP"
     PHP_rate <- list("Philippine Peso", "PHP", 1)
     USD_rate <- list("United States Dollar", "USD", 1)
