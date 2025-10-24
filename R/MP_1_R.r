@@ -333,6 +333,7 @@ main <- function() {
             if (option == 1) {
                 printBorders()
                 name <- registerName()
+                balance <- 0.0
             } else if (option >= 2 && option <= 6) {
                 if (is.null(name)) {
                     cat("Please register an account first.\n")
